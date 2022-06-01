@@ -28,3 +28,6 @@ types: Array,
 weight:	Number,
 });
 
+const Pokemon = mongoose.model('Pokemon', pokemonSchema);
+
+module.exports = Pokemon;
