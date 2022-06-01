@@ -10,8 +10,8 @@ Data.getAllPokemon = async(req,res) => {
         if (req.query.name) {
             filterQuery.name = req.query.name;
         }
-        console.log(`you are in getAllPokemon ${filterQuery}`)
-        const allPokemon = await pokemonModel.find(filterQuery);
+        console.log(`you are in getAllPokemon ${filterQuery}`);
+        const allPokemon = await pokemonModel.find(filterQuery, 'name id sprites.front_default').exec();
         res.status(200).json(allPokemon);
 
     } catch (err) {
