@@ -6,7 +6,12 @@ const Data = {};
 
 Data.getAllPokemon = async(req,res) => {
     try {
-        const allPokemon = await pokemonModel.find({});
+        const filterQuery = {};
+        if (req.query.name) {
+            filterQuery.name = req.query.name;
+        }
+        console.log(`you are in getAllPokemon ${filterQuery}`)
+        const allPokemon = await pokemonModel.find(filterQuery);
         res.status(200).json(allPokemon);
 
     } catch (err) {
