@@ -2,4 +2,11 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-mongoose.connect(process.env.mongoURL);
+mongoose.connect(process.env.MONGO_URL);
+
+const axios = require('axios').default;
+
+async function seed() {
+
+    
+}
