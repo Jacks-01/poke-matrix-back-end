@@ -4,6 +4,11 @@ const pokemonModel = require('./models/pokemon');
 
 const Data = {};
 
+/**
+ * 
+ * @param {object} req - GET request from the front end.
+ * @param {object} res a JSON object with all pokemon in our DB
+ */
 Data.getAllPokemon = async(req,res) => {
     try {
         const filterQuery = {};
@@ -23,4 +28,6 @@ Data.getAllPokemon = async(req,res) => {
 // Data.getOnePokemon = async(req, res) => {
 
 // }
+
+// Exporting Data so that we can use the methods it in our server.js
 module.exports = Data
