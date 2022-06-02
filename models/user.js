@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     username: String,
     password: String,
     favorites: Object
-})
+});
 
 
 const User = mongoose.model('User', userSchema);

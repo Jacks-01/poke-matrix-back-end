@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 const Data = require('./data');
+const { get } = require('express/lib/response');
 
 // telling our app to use express
 const app = express();
@@ -37,6 +38,8 @@ db.once('open', () => {
 
 // the route
 app.get('/pokemon', Data.getAllPokemon);
+
+// app.get('/user', Data.addToFavorites);
 
 //  server confirming it is live and what our port number is.
 app.listen(PORT, () => {

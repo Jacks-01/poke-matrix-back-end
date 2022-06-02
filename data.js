@@ -1,6 +1,7 @@
 'use strict';
 
 const pokemonModel = require('./models/pokemon');
+const userModel = require('./models/user')
 
 const Data = {};
 
@@ -16,7 +17,7 @@ Data.getAllPokemon = async(req,res) => {
             filterQuery.name = req.query.name;
         }
         console.log(`you are in getAllPokemon ${filterQuery}`);
-        const allPokemon = await pokemonModel.find(filterQuery, 'name id sprites.front_default').exec();
+        const allPokemon = await pokemonModel.find(filterQuery, 'name id sprites.front_default height weight').exec();
         res.status(200).json(allPokemon);
 
     } catch (err) {
@@ -25,9 +26,18 @@ Data.getAllPokemon = async(req,res) => {
     }
 }
 
-// Data.getOnePokemon = async(req, res) => {
+// Data.addToFavorites = async(req,res) => {
+//     try {
+//         const login = {}
+//         if (req.query.) {
+            
+//         }
+//     } catch (err) {
+//         console.error(err);
+//         res.send(err);
+//     }
 
-// }
+// };
 
 // Exporting Data so that we can use the methods it in our server.js
 module.exports = Data
