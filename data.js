@@ -29,17 +29,22 @@ Data.getAllPokemon = async (req, res) => {
 
 Data.addToFavorites = async (req, res) => {
 	try {
-		console.log(`adding a new pokemon to favorites: ${JSON.stringify(req.body)}`);
+		console.log(`adding a new pokemon to favorites: ${req.body}`);
+        let id = req.body._id
+        console.log(`this is id:`, id)
 		const data = req.body;
         console.log(`this is the value of data:`,data)
-		const favorite = new userModel(data);
-		await favorite.save();
+		const favorite = await userModel.findByIdAndUpdate(id, data);
+		
 		res.status(200).json(favorite);
 	} catch (err) {
 		console.error(err);
 		res.send(err);
 	}
 };
+
+
+// Data.updateFavorites({})
 
 // Exporting Data so that we can use the methods it in our server.js
 module.exports = Data;
