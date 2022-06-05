@@ -44,7 +44,18 @@ Data.addToFavorites = async (req, res) => {
 };
 
 
-// Data.updateFavorites({})
+Data.showFavorites = async (req,res) => {
+	try {
+		console.log('request for favorites...');
+		let query = req.query.params
+		console.log('logging query', query);
+		let favorites = await userModel.find(query);
+		res.status(200).json(favorites);
+		
+	} catch (error) {
+		console.error(error);
+	}
+}
 
 // Exporting Data so that we can use the methods it in our server.js
 module.exports = Data;

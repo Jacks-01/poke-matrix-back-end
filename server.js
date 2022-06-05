@@ -39,6 +39,8 @@ db.once('open', () => {
 // the route
 app.get('/pokemon', Data.getAllPokemon);
 
+app.get('/users', Data.showFavorites);
+
 app.patch('/users/:id', Data.addToFavorites);
 
 //  server confirming it is live and what our port number is.
