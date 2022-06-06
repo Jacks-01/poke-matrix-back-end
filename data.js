@@ -6,9 +6,10 @@ const userModel = require('./models/user');
 const Data = {};
 
 /**
- *
+ * @description This function is responsible for looking up all pokemon (search query is blank), or if it recieves a request, sends only one pokemon back.
  * @param {object} req - GET request from the front end.
  * @param {object} res a JSON object with all pokemon in our DB
+ * @returns an object with an array of pokemon. Also returns a single pokemon if the user searches on the client side.
  */
 Data.getAllPokemon = async (req, res) => {
 	try {
@@ -27,7 +28,13 @@ Data.getAllPokemon = async (req, res) => {
 	}
 };
 
-Data.addToFavorites = async (req, res) => {
+/**
+ * @description The DB is actually just being updated, which allows this function to add and remove as needed.
+ * @param {object} req request from the client
+ * @param {object} res response from DB
+ * @returns a pokemon object 
+ */
+Data.updateFavorites = async (req, res) => {
 	try {
 		console.log(`adding a new pokemon to favorites: ${req.body}`);
         let id = req.body._id
@@ -43,7 +50,12 @@ Data.addToFavorites = async (req, res) => {
 	}
 };
 
-
+/**
+ * 
+ * @param {object} req - request from client 
+ * @param {object} res - response from database
+ * @returns an object with the array of favorite pokemons.
+ */
 Data.showFavorites = async (req,res) => {
 	try {
 		console.log('request for favorites...');
