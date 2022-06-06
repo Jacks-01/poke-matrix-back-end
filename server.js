@@ -10,7 +10,6 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 const Data = require('./data');
-const { get } = require('express/lib/response');
 
 // telling our app to use express
 const app = express();
@@ -18,32 +17,31 @@ const app = express();
 // this our middleware so that our data can be decrypted.
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 
 // setting the port and mongoDB url
-const PORT = process.env.PORT
+const PORT = process.env.PORT;
 mongoose.connect(process.env.MONGO_URL);
 const db = mongoose.connection;
 
 // throws an error if something went wrong when turning on mongo
 db.on('error', (err) => {
-    console.error(`DB ERROR: ${err}`);
-})
+	console.error(`DB ERROR: ${err}`);
+});
 
 // tells us when we are connected successfully
 db.once('open', () => {
-    console.log(`Connected to the database`);
-})
+	console.log(`Connected to the database`);
+});
 
-
-// the route
+// the routes
 app.get('/pokemon', Data.getAllPokemon);
 
 app.get('/users', Data.showFavorites);
 
-app.patch('/users/:id', Data.addToFavorites);
+app.patch('/users/:id', Data.updateFavorites);
 
 //  server confirming it is live and what our port number is.
 app.listen(PORT, () => {
-    console.log(`you are listening on ${PORT}`)
+	console.log(`you are listening on ${PORT}`);
 });
